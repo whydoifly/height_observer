@@ -1,0 +1,30 @@
+.expand-gradient {
+    overflow: hidden;
+    position: relative;
+    max-height: 1250px;
+    -webkit-transition: max-height 1s ease;
+    -o-transition: max-height 1s ease;
+    transition: max-height 1s ease;
+}
+
+.expand-gradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+    background: -o-linear-gradient(rgba(255, 255, 255, 0), #fff);
+    background: linear-gradient(rgba(255, 255, 255, 0), #fff);
+}
+
+.expand-desc-btn,
+.collapse-desc-btn {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 18px;
+}
