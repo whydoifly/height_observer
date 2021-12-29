@@ -1,3 +1,8 @@
+.work-container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
 .expand-gradient {
     overflow: hidden;
     position: relative;
@@ -22,9 +27,7 @@
 .expand-desc-btn,
 .collapse-desc-btn {
     display: block;
-    text-align: center;
     cursor: pointer;
     text-decoration: underline;
-    font-weight: bold;
-    font-size: 18px;
+    /* font-weight: bold; */
 }
