@@ -1,5 +1,15 @@
 // Сюда передать название класса контейнера, с которым необходимо взаимодействовать
-let elToCheck = document.querySelector('.work-container');
+let eventState;
+if (document.querySelector('.header_event__first-1__desc')) {
+    eventState = 1;
+} else if (document.querySelector('.header_event__first-2__desc')) {
+    eventState = 2;
+} else {
+    eventState = 3;
+}
+
+
+let elToCheck = document.querySelector(`.header_event__first-${eventState}__desc`);
 
 
 let elDataHeightNumber = Number(elToCheck.dataset.height);
@@ -40,7 +50,6 @@ collapseBtn.addEventListener('click', () => {
 heightChecker(elToCheck);
 
 function heightChecker(element) {
-    
     if (element.offsetHeight > elDataHeightNumber) {
         element.style.height = elDataHeightString;
         element.classList.add('expand-gradient');
