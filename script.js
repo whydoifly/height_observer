@@ -1,66 +1,73 @@
 // Сюда передать название класса контейнера, с которым необходимо взаимодействовать
 let eventState;
-if (document.querySelector('.header_event__first-1__desc')) {
-    eventState = 1;
-} else if (document.querySelector('.header_event__first-2__desc')) {
-    eventState = 2;
+if (document.querySelector(".header_event__first-1__desc")) {
+  eventState = 1;
+  heightObserver();
+} else if (document.querySelector(".header_event__first-2__desc")) {
+  eventState = 2;
+  heightObserver();
+} else if (document.querySelector(".header_event__first-3__desc")) {
+  eventState = 3;
+  heightObserver();
 } else {
-    eventState = 3;
+    
 }
 
+function heightObserver() {
+  let elToCheck = document.querySelector(
+    `.header_event__first-${eventState}__desc`
+  );
 
-let elToCheck = document.querySelector(`.header_event__first-${eventState}__desc`);
+  let elDataHeightNumber = Number(elToCheck.dataset.height);
+  let elDataHeightString = elDataHeightNumber + "px";
 
+  // Кнопка 'Показать больше'
+  let expandBtn = document.createElement("i");
+  expandBtn.classList.add("expand-desc-btn");
+  expandBtn.textContent = "Показать больше";
+  expandBtn.style.position = "absolute";
+  expandBtn.style.zIndex = "100";
+  expandBtn.style.bottom = "0";
 
-let elDataHeightNumber = Number(elToCheck.dataset.height);
-let elDataHeightString = elDataHeightNumber + 'px';
+  // Кнопка 'Скрыть описание'
+  let collapseBtn = document.createElement("i");
+  collapseBtn.classList.add("collapse-desc-btn");
+  collapseBtn.textContent = "Скрыть описание";
 
-// Кнопка 'Показать больше'
-let expandBtn = document.createElement('i');
-    expandBtn.classList.add('expand-desc-btn');
-    expandBtn.textContent = 'Показать больше';
-    expandBtn.style.position = 'absolute';
-    expandBtn.style.zIndex = '100';
-    expandBtn.style.bottom = '0';
-
-
-// Кнопка 'Скрыть описание'
-let collapseBtn = document.createElement('i');
-    collapseBtn.classList.add('collapse-desc-btn');
-    collapseBtn.textContent = 'Скрыть описание';
-
-
-expandBtn.addEventListener('click', () => {
-    if (document.querySelector('.expand-gradient')) {
-        document.querySelector('.expand-gradient').classList.remove('expand-gradient');
-        removeButton(expandBtn);
-        addButton(elToCheck, collapseBtn);
-        elToCheck.style.height = "100%";
+  expandBtn.addEventListener("click", () => {
+    if (document.querySelector(".expand-gradient")) {
+      document
+        .querySelector(".expand-gradient")
+        .classList.remove("expand-gradient");
+      removeButton(expandBtn);
+      addButton(elToCheck, collapseBtn);
+      elToCheck.style.height = "100%";
     }
-});
+  });
 
-collapseBtn.addEventListener('click', () => {
-    if (document.querySelector('.collapse-desc-btn')) {
-        elToCheck.classList.add('expand-gradient');
-        elToCheck.insertAdjacentElement('beforeend', expandBtn);
-        elToCheck.style.height = elDataHeightString;
+  collapseBtn.addEventListener("click", () => {
+    if (document.querySelector(".collapse-desc-btn")) {
+      elToCheck.classList.add("expand-gradient");
+      elToCheck.insertAdjacentElement("beforeend", expandBtn);
+      elToCheck.style.height = elDataHeightString;
     }
-});
+  });
 
-heightChecker(elToCheck);
+  heightChecker(elToCheck);
 
-function heightChecker(element) {
+  function heightChecker(element) {
     if (element.offsetHeight > elDataHeightNumber) {
-        element.style.height = elDataHeightString;
-        element.classList.add('expand-gradient');
-        element.insertAdjacentElement('beforeend', expandBtn);
+      element.style.height = elDataHeightString;
+      element.classList.add("expand-gradient");
+      element.insertAdjacentElement("beforeend", expandBtn);
     }
-}
+  }
 
-function removeButton(button) {
+  function removeButton(button) {
     button.remove();
-}
+  }
 
-function addButton(div, button) {
-    div.insertAdjacentElement('beforeend', button)
+  function addButton(div, button) {
+    div.insertAdjacentElement("beforeend", button);
+  }
 }
